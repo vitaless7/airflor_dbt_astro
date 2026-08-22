@@ -1,0 +1,24 @@
+[project]
+name = "1-local-setup"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Felipe Vital", email = "felipezreal@gmail.com" }
+]
+requires-python = ">=3.11.9"
+dependencies = [
+    "dbt-core>=1.12.3",
+    "dbt-postgres>=1.11.0",
+    "duckdb>=1.5.5",
+    "faker>=40.37.0",
+    "numpy>=2.4.6",
+    "pandas>=3.0.5",
+]
+
+[project.scripts]
+1-local-setup = "1_local_setup:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
