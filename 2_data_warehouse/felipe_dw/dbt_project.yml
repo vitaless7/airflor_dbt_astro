@@ -1,16 +1,7 @@
-
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
 name: 'felipe_dw'
 version: '1.0.0'
-
-# This setting configures which "profile" dbt uses for this project.
 profile: 'felipe_dw'
 
-# These configurations specify where dbt should look for different types of files.
-# The `model-paths` config, for example, states that models in this project can be
-# found in the "models/" directory. You probably won't need to change these!
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -18,19 +9,28 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-clean-targets:         # directories to be removed by `dbt clean`
+clean-targets:
   - "target"
   - "dbt_packages"
 
+# Configuração Global de Variáveis (Timezone para pacotes de data)
+vars:
+  "dbt_date:time_zone": "America/Sao_Paulo"
 
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
-
-# In this example config, we tell dbt to build all models in the example/
-# directory as views. These settings can be overridden in the individual model
-# files using the `{{ config(...) }}` macro.
+# Configuração das Camadas de Modelagem (Snake Case)
 models:
   felipe_dw:
-    # Config indicated by + and applies to all files under models/example/
-    example:
+    # Aplica o fuso horário antes de rodar qualquer modelo no banco
+    +pre-hook: "SET TIMEZONE TO 'America/Sao_Paulo';"
+    
+    # 1. Camada Staging (Gera tudo como VIEW para ser leve e rápido)
+    staging:
       +materialized: view
+      
+    # 2. Camada Intermediate (Gera como VIEW pois são tabelas de meio de caminho)
+    intermediate:
+      +materialized: view
+      
+    # 3. Camada Marts (Gera como TABLE para ficar estático e rápido para os relatórios)
+    marts:
+      +materialized: table
