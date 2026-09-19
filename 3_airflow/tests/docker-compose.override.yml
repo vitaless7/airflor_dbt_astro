@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  scheduler:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  webserver:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  triggerer:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

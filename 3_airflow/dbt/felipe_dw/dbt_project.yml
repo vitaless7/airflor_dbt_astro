@@ -1,0 +1,36 @@
+name: 'felipe_dw'
+version: '1.0.0'
+profile: 'felipe_dw'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuração Global de Variáveis (Timezone para pacotes de data)
+vars:
+  "dbt_date:time_zone": "America/Sao_Paulo"
+
+# Configuração das Camadas de Modelagem (Snake Case)
+models:
+  felipe_dw:
+    # Aplica o fuso horário antes de rodar qualquer modelo no banco
+    +pre-hook: "SET TIMEZONE TO 'America/Sao_Paulo';"
+    
+    # 1. Camada Staging (Gera tudo como VIEW para ser leve e rápido)
+    staging:
+      +materialized: view
+      
+    # 2. Camada Intermediate (Gera como VIEW pois são tabelas de meio de caminho)
+    intermediate:
+      +materialized: view
+      
+    # 3. Camada Marts (Gera como TABLE para ficar estático e rápido para os relatórios)
+    marts:
+      +materialized: table

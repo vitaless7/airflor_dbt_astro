@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: fact_pedidos
+    description: "Tabela facto principal de vendas e pedidos, contendo o detalhe de cada transação e dados cadastrais do cliente."
+    columns:
+      - name: id_pedido
+        description: "Chave primária da transação/pedido."
+        tests:
+          - unique
+          - not_null
+
+      - name: id_cliente
+        description: "Chave estrangeira referente ao cliente que realizou a compra."
+        tests:
+          - not_null
+
+      - name: valor_total
+        description: "Valor total da transação em reais."
+        tests:
+          - not_null
+
+      - name: status
+        description: "Estado do pedido (ex: concluído, cancelado, pendente)."
+        tests:
+          - not_null
+
+  - name: mart_vendas_por_periodo
+    description: "Model agregada com métricas consolidadas de vendas agrupadas por data, mês e estado do cliente."
+    columns:
+      - name: data_pedido
+        description: "Data em que as vendas foram realizadas."
+        tests:
+          - not_null
+
+      - name: ano_mes
+        description: "Período no formato YYYY-MM."
+        tests:
+          - not_null
+
+      - name: total_pedidos
+        description: "Total de pedidos únicos registados no período."
+        tests:
+          - not_null
+
+      - name: faturamento_total
+        description: "Soma do valor total das vendas no período."
+        tests:
+          - not_null
