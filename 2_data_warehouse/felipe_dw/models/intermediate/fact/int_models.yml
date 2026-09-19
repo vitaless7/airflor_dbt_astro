@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: int_fact_pedidos
+    description: "Tabela fato intermediária contendo as transações de pedidos enriquecidas com dados do cliente."
+    columns:
+      - name: id_pedido
+        description: "Chave primária do pedido."
+        tests:
+          - unique
+          - not_null
+
+      - name: id_cliente
+        description: "Chave estrangeira referente ao cliente."
+        tests:
+          - not_null
+
+      - name: valor_total
+        description: "Valor total da transação."
+        tests:
+          - not_null
+
+      - name: data_pedido
+        description: "Data em que o pedido foi realizado."
+        tests:
+          - not_null
