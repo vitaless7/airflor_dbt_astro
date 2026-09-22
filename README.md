@@ -78,7 +78,7 @@ airflor_dbt_astro/
             └── mart/
 ```
 
-> ⚠️ Existem **duas cópias** do projeto dbt (pastas 2 e 3), e elas já divergiram. A versão válida é a `3_airflow/dbt/felipe_dw`. Veja a [seção 7](#7-pendências-conhecidas-fundamentos-a-corrigir).
+
 
 ---
 
