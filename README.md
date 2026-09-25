@@ -14,8 +14,7 @@ Pipeline de dados de ponta a ponta, feito para estudo: **gera dados falsos → c
 4. [A DAG explicada linha a linha](#4-a-dag-explicada-linha-a-linha)
 5. [O que o Cosmos faz por baixo (e como escrever sem ele)](#5-o-que-o-cosmos-faz-por-baixo-e-como-escrever-sem-ele)
 6. [Modelos dbt: o que cada um faz](#6-modelos-dbt-o-que-cada-um-faz)
-7. [Pendências conhecidas (fundamentos a corrigir)](#7-pendências-conhecidas-fundamentos-a-corrigir)
-8. [Próximos passos: CI/CD e processamento](#8-próximos-passos-cicd-e-processamento)
+
 
 ---
 
